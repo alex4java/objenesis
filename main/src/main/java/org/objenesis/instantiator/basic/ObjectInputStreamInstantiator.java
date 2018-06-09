@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +47,7 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
       private int pointer;
       private byte[] data;
       private int sequence;
-      private static final int[] NEXT = new int[] {1, 2, 2};
+      private static final int[] NEXT = new int[]{1, 2, 2};
       private byte[][] buffers;
 
       private final byte[] FIRST_DATA;
@@ -73,8 +73,7 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
             dout.writeByte(ObjectStreamConstants.TC_REFERENCE);
             dout.writeInt(ObjectStreamConstants.baseWireHandle);
             REPEATING_DATA = byteOut.toByteArray();
-         }
-         catch(IOException e) {
+         } catch (IOException e) {
             throw new Error("IOException: " + e.getMessage());
          }
 
@@ -105,12 +104,11 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
             dout.writeShort((short) 0); // Zero fields
             dout.writeByte(ObjectStreamConstants.TC_ENDBLOCKDATA);
             dout.writeByte(ObjectStreamConstants.TC_NULL);
-         }
-         catch(IOException e) {
+         } catch (IOException e) {
             throw new Error("IOException: " + e.getMessage());
          }
          this.FIRST_DATA = byteOut.toByteArray();
-         buffers = new byte[][] {HEADER, FIRST_DATA, REPEATING_DATA};
+         buffers = new byte[][]{HEADER, FIRST_DATA, REPEATING_DATA};
       }
 
       private void advanceBuffer() {
@@ -122,7 +120,7 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
       @Override
       public int read() throws IOException {
          int result = data[pointer++];
-         if(pointer >= data.length) {
+         if (pointer >= data.length) {
             advanceBuffer();
          }
 
@@ -139,14 +137,14 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
          int left = len;
          int remaining = data.length - pointer;
 
-         while(remaining <= left) {
+         while (remaining <= left) {
             System.arraycopy(data, pointer, b, off, remaining);
             off += remaining;
             left -= remaining;
             advanceBuffer();
             remaining = data.length - pointer;
          }
-         if(left > 0) {
+         if (left > 0) {
             System.arraycopy(data, pointer, b, off, left);
             pointer += left;
          }
@@ -158,15 +156,13 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
    private ObjectInputStream inputStream;
 
    public ObjectInputStreamInstantiator(Class<T> clazz) {
-      if(Serializable.class.isAssignableFrom(clazz)) {
+      if (Serializable.class.isAssignableFrom(clazz)) {
          try {
             this.inputStream = new ObjectInputStream(new MockStream(clazz));
-         }
-         catch(IOException e) {
+         } catch (IOException e) {
             throw new Error("IOException: " + e.getMessage());
          }
-      }
-      else {
+      } else {
          throw new ObjenesisException(new NotSerializableException(clazz + " not serializable"));
       }
    }
@@ -175,11 +171,9 @@ public class ObjectInputStreamInstantiator<T> implements ObjectInstantiator<T> {
    public T newInstance() {
       try {
          return (T) inputStream.readObject();
-      }
-      catch(ClassNotFoundException e) {
+      } catch (ClassNotFoundException e) {
          throw new Error("ClassNotFoundException: " + e.getMessage());
-      }
-      catch(Exception e) {
+      } catch (Exception e) {
          throw new ObjenesisException(e);
       }
    }

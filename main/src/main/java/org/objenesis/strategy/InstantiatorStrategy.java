@@ -18,8 +18,8 @@ package org.objenesis.strategy;
 import org.objenesis.instantiator.ObjectInstantiator;
 
 /**
- * Defines a strategy to determine the best instantiator for a class.
- * 
+ * 实例化策略
+ *
  * @author Henri Tremblay
  */
 public interface InstantiatorStrategy {

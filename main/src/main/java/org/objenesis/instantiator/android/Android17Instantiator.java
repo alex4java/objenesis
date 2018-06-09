@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,8 +45,7 @@ public class Android17Instantiator<T> implements ObjectInstantiator<T> {
    public T newInstance() {
       try {
          return type.cast(newInstanceMethod.invoke(null, type, objectConstructorId));
-      }
-      catch(Exception e) {
+      } catch (Exception e) {
          throw new ObjenesisException(e);
       }
    }
@@ -57,11 +56,9 @@ public class Android17Instantiator<T> implements ObjectInstantiator<T> {
             "newInstance", Class.class, Integer.TYPE);
          newInstanceMethod.setAccessible(true);
          return newInstanceMethod;
-      }
-      catch(RuntimeException e) {
+      } catch (RuntimeException e) {
          throw new ObjenesisException(e);
-      }
-      catch(NoSuchMethodException e) {
+      } catch (NoSuchMethodException e) {
          throw new ObjenesisException(e);
       }
    }
@@ -73,17 +70,13 @@ public class Android17Instantiator<T> implements ObjectInstantiator<T> {
          newInstanceMethod.setAccessible(true);
 
          return (Integer) newInstanceMethod.invoke(null, Object.class);
-      }
-      catch(RuntimeException e) {
+      } catch (RuntimeException e) {
          throw new ObjenesisException(e);
-      }
-      catch(NoSuchMethodException e) {
+      } catch (NoSuchMethodException e) {
          throw new ObjenesisException(e);
-      }
-      catch(IllegalAccessException e) {
+      } catch (IllegalAccessException e) {
          throw new ObjenesisException(e);
-      }
-      catch(InvocationTargetException e) {
+      } catch (InvocationTargetException e) {
          throw new ObjenesisException(e);
       }
    }

@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,15 +87,15 @@ public final class PlatformDescription {
     */
    public static String describePlatform() {
       String desc = "Java " + SPECIFICATION_VERSION + " ("
-              + "VM vendor name=\"" + VENDOR + "\", "
-              + "VM vendor version=" + VENDOR_VERSION + ", "
-              + "JVM name=\"" + JVM_NAME + "\", "
-              + "JVM version=" + VM_VERSION + ", "
-              + "JVM info=" + VM_INFO;
+         + "VM vendor name=\"" + VENDOR + "\", "
+         + "VM vendor version=" + VENDOR_VERSION + ", "
+         + "JVM name=\"" + JVM_NAME + "\", "
+         + "JVM version=" + VM_VERSION + ", "
+         + "JVM info=" + VM_INFO;
 
       // Add the API level is it's an Android platform
       int androidVersion = ANDROID_VERSION;
-      if(androidVersion != 0) {
+      if (androidVersion != 0) {
          desc += ", API level=" + ANDROID_VERSION;
       }
       desc += ")";
@@ -119,13 +119,13 @@ public final class PlatformDescription {
     * Check if this JVM is an Android JVM based on OpenJDK.
     *
     * @return if it's an Android version based on the OpenJDK. Will return false if this JVM isn't an Android JVM at all
-     */
+    */
    public static boolean isAndroidOpenJDK() {
       return IS_ANDROID_OPENJDK;
    }
 
    private static boolean getIsAndroidOpenJDK() {
-      if(getAndroidVersion() == 0) {
+      if (getAndroidVersion() == 0) {
          return false; // Not android at all
       }
       // Sadly, Android N is still API 23. So we can't base ourselves on the API level to know if it is an OpenJDK
@@ -148,7 +148,7 @@ public final class PlatformDescription {
    }
 
    private static int getAndroidVersion() {
-      if(!isThisJVM(DALVIK)) {
+      if (!isThisJVM(DALVIK)) {
          return 0;
       }
       return getAndroidVersion0();
@@ -158,23 +158,20 @@ public final class PlatformDescription {
       Class<?> clazz;
       try {
          clazz = Class.forName("android.os.Build$VERSION");
-      }
-      catch(ClassNotFoundException e) {
+      } catch (ClassNotFoundException e) {
          throw new ObjenesisException(e);
       }
       Field field;
       try {
          field = clazz.getField("SDK_INT");
-      }
-      catch(NoSuchFieldException e) {
+      } catch (NoSuchFieldException e) {
          // Might be a really old API (before 4), go for SDK
          return getOldAndroidVersion(clazz);
       }
       int version;
       try {
          version = (Integer) field.get(null);
-      }
-      catch(IllegalAccessException e) {
+      } catch (IllegalAccessException e) {
          throw new RuntimeException(e);
       }
       return version;
@@ -184,15 +181,13 @@ public final class PlatformDescription {
       Field field;
       try {
          field = versionClass.getField("SDK");
-      }
-      catch(NoSuchFieldException e) {
+      } catch (NoSuchFieldException e) {
          throw new ObjenesisException(e);
       }
       String version;
       try {
          version = (String) field.get(null);
-      }
-      catch(IllegalAccessException e) {
+      } catch (IllegalAccessException e) {
          throw new RuntimeException(e);
       }
       return Integer.parseInt(version);

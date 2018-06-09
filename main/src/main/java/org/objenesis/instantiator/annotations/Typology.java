@@ -16,28 +16,27 @@
 package org.objenesis.instantiator.annotations;
 
 /**
- * Possible types of instantiator
+ * 实例化的类型枚举类
  * @author Henri Tremblay
  */
 public enum Typology {
    /**
-    * Mark an instantiator used for standard instantiation (not calling a constructor).
+    * 标准实例化，不调用构造函数
     */
    STANDARD,
 
    /**
-    * Mark an instantiator used for serialization.
+    * 使用序列化
     */
    SERIALIZATION,
 
    /**
-    * Mark an instantiator that doesn't behave like a {@link #STANDARD} nor a {@link #SERIALIZATION} (e.g. calls a constructor, fails
-    * all the time, etc.)
+    * 标记一个实例化器，其行为不像STANDARD和SERIALIZATION（例如调用一个构造函数，一直失败）
     */
    NOT_COMPLIANT,
 
    /**
-    * No type specified on the instantiator class
+    * 无类型指定
     */
    UNKNOWN
 }

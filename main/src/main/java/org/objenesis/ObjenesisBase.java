@@ -35,7 +35,7 @@ public class ObjenesisBase implements Objenesis {
    protected ConcurrentHashMap<String, ObjectInstantiator<?>> cache;
 
    /**
-    * Constructor allowing to pick a strategy and using cache
+    * 提供一个实例化策略类，并使用缓存
     *
     * @param strategy Strategy to use
     */
@@ -74,9 +74,7 @@ public class ObjenesisBase implements Objenesis {
    }
 
    /**
-    * Will pick the best instantiator for the provided class. If you need to create a lot of
-    * instances from the same class, it is way more efficient to create them from the same
-    * ObjectInstantiator than calling {@link #newInstance(Class)}.
+    * 通过策略类来获取实例化类并放入缓存
     *
     * @param clazz Class to instantiate
     * @return Instantiator dedicated to the class
@@ -84,6 +82,7 @@ public class ObjenesisBase implements Objenesis {
    @SuppressWarnings("unchecked")
    public <T> ObjectInstantiator<T> getInstantiatorOf(Class<T> clazz) {
       if(clazz.isPrimitive()) {
+         // 基本类型
          throw new IllegalArgumentException("Primitive types can't be instantiated in Java");
       }
       if(cache == null) {

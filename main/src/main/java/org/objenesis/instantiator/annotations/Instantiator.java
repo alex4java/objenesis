@@ -22,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Denote that the class in an instantiator of a given type
+ * 通过实例化类型表示该类是一个实例化器
  *
  * @author Henri Tremblay
  */
@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 public @interface Instantiator {
 
    /**
-    * @return type of instantiator
+    * @return 实例化类型
     */
    Typology value();
 }

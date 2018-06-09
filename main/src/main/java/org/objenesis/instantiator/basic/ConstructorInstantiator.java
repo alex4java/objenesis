@@ -23,8 +23,7 @@ import org.objenesis.instantiator.annotations.Instantiator;
 import org.objenesis.instantiator.annotations.Typology;
 
 /**
- * Instantiates a class by grabbing the no args constructor and calling Constructor.newInstance().
- * This can deal with default public constructors, but that's about it.
+ * 调用默认的构造函数实例化类，可能会失败（因为有些类没有提供默认的无参构造函数）
  *
  * @author Joe Walnes
  * @param <T> Type instantiated

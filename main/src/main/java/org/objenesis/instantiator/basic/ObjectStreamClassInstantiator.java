@@ -57,6 +57,7 @@ public class ObjectStreamClassInstantiator<T> implements ObjectInstantiator<T> {
 
    public ObjectStreamClassInstantiator(Class<T> type) {
       initialize();
+      // 如果type类没有实现Serializable或者Externalizable，objStreamClass为null
       objStreamClass = ObjectStreamClass.lookup(type);
    }
 

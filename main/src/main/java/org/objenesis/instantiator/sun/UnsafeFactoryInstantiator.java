@@ -46,6 +46,7 @@ public class UnsafeFactoryInstantiator<T> implements ObjectInstantiator<T> {
 
    public T newInstance() {
       try {
+         // 使用unsafe的allocateInstance实例化对象
          return type.cast(unsafe.allocateInstance(type));
       } catch (InstantiationException e) {
          throw new ObjenesisException(e);

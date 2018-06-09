@@ -19,16 +19,15 @@ import java.io.Serializable;
 
 /**
  * Helper for common serialization-compatible instantiation functions
- * 
+ *
  * @author Leonardo Mesquita
  */
 public class SerializationInstantiatorHelper {
 
    /**
-    * Returns the first non-serializable superclass of a given class. According to Java Object
-    * Serialization Specification, objects read from a stream are initialized by calling an
-    * accessible no-arg constructor from the first non-serializable superclass in the object's
-    * hierarchy, allowing the state of non-serializable fields to be correctly initialized.
+    * 返回指定类的第一个非序列化的父类，根据Java对象序列化规范，
+    * 从流中读取的对象通过从对象层次结构中的第一个不可序列化的超类调用可访问的无参数构造函数进行初始化，
+    * 从而允许正确初始化不可序列化字段的状态。
     *
     * @param <T> Type to instantiate
     * @param type Serializable class for which the first non-serializable superclass is to be found

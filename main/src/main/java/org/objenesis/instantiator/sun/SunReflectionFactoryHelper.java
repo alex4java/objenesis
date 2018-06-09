@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package org.objenesis.instantiator.sun;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,7 +26,7 @@ import org.objenesis.instantiator.ObjectInstantiator;
 /**
  * Helper methods providing access to {@link sun.reflect.ReflectionFactory} via reflection, for use
  * by the {@link ObjectInstantiator}s that use it.
- * 
+ *
  * @author Henri Tremblay
  */
 @SuppressWarnings("restriction")
@@ -33,7 +34,7 @@ class SunReflectionFactoryHelper {
 
    @SuppressWarnings("unchecked")
    public static <T> Constructor<T> newConstructorForSerialization(Class<T> type,
-      Constructor<?> constructor) {
+                                                                   Constructor<?> constructor) {
       Class<?> reflectionFactoryClass = getReflectionFactoryClass();
       Object reflectionFactory = createReflectionFactory(reflectionFactoryClass);
 
@@ -43,14 +44,11 @@ class SunReflectionFactoryHelper {
       try {
          return (Constructor<T>) newConstructorForSerializationMethod.invoke(
             reflectionFactory, type, constructor);
-      }
-      catch(IllegalArgumentException e) {
+      } catch (IllegalArgumentException e) {
          throw new ObjenesisException(e);
-      }
-      catch(IllegalAccessException e) {
+      } catch (IllegalAccessException e) {
          throw new ObjenesisException(e);
-      }
-      catch(InvocationTargetException e) {
+      } catch (InvocationTargetException e) {
          throw new ObjenesisException(e);
       }
    }
@@ -58,8 +56,7 @@ class SunReflectionFactoryHelper {
    private static Class<?> getReflectionFactoryClass() {
       try {
          return Class.forName("sun.reflect.ReflectionFactory");
-      }
-      catch(ClassNotFoundException e) {
+      } catch (ClassNotFoundException e) {
          throw new ObjenesisException(e);
       }
    }
@@ -69,17 +66,13 @@ class SunReflectionFactoryHelper {
          Method method = reflectionFactoryClass.getDeclaredMethod(
             "getReflectionFactory");
          return method.invoke(null);
-      }
-      catch(NoSuchMethodException e) {
+      } catch (NoSuchMethodException e) {
          throw new ObjenesisException(e);
-      }
-      catch(IllegalAccessException e) {
+      } catch (IllegalAccessException e) {
          throw new ObjenesisException(e);
-      }
-      catch(IllegalArgumentException e) {
+      } catch (IllegalArgumentException e) {
          throw new ObjenesisException(e);
-      }
-      catch(InvocationTargetException e) {
+      } catch (InvocationTargetException e) {
          throw new ObjenesisException(e);
       }
    }
@@ -88,8 +81,7 @@ class SunReflectionFactoryHelper {
       try {
          return reflectionFactoryClass.getDeclaredMethod(
             "newConstructorForSerialization", Class.class, Constructor.class);
-      }
-      catch(NoSuchMethodException e) {
+      } catch (NoSuchMethodException e) {
          throw new ObjenesisException(e);
       }
    }
