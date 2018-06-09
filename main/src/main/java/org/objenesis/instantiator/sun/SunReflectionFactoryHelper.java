@@ -36,12 +36,15 @@ class SunReflectionFactoryHelper {
    public static <T> Constructor<T> newConstructorForSerialization(Class<T> type,
                                                                    Constructor<?> constructor) {
       Class<?> reflectionFactoryClass = getReflectionFactoryClass();
+      // 实例化ReflectionFactory类
       Object reflectionFactory = createReflectionFactory(reflectionFactoryClass);
 
+      // 获取ReflectionFactory的newConstructorForSerialization方法
       Method newConstructorForSerializationMethod = getNewConstructorForSerializationMethod(
          reflectionFactoryClass);
 
       try {
+         // 调用newConstructorForSerialization获得一个被改写的构造函数
          return (Constructor<T>) newConstructorForSerializationMethod.invoke(
             reflectionFactory, type, constructor);
       } catch (IllegalArgumentException e) {

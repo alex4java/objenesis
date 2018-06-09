@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,12 +67,13 @@ public final class ClassDefinitionUtils {
    public static final int ACC_ANNOTATION = 0x2000; // Declared as an annotation type.
    public static final int ACC_ENUM = 0x4000; // Declared as an enum type.
 
-   public static final byte[] MAGIC = { (byte) 0xca, (byte) 0xfe, (byte) 0xba, (byte) 0xbe };
-   public static final byte[] VERSION = { (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x31 }; // minor_version, major_version (Java 5)
+   public static final byte[] MAGIC = {(byte) 0xca, (byte) 0xfe, (byte) 0xba, (byte) 0xbe};
+   public static final byte[] VERSION = {(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x31}; // minor_version, major_version (Java 5)
 
-   private ClassDefinitionUtils() { }
+   private ClassDefinitionUtils() {
+   }
 
-//   private static Method DEFINE_CLASS;
+   //   private static Method DEFINE_CLASS;
    private static final ProtectionDomain PROTECTION_DOMAIN;
 
    static {
@@ -122,12 +123,11 @@ public final class ClassDefinitionUtils {
       InputStream in = ClassDefinitionUtils.class.getClassLoader().getResourceAsStream(className);
       try {
          length = in.read(b);
-      }
-      finally {
+      } finally {
          in.close();
       }
 
-      if(length >= 2500) {
+      if (length >= 2500) {
          throw new IllegalArgumentException("The class is longer that 2500 bytes which is currently unsupported");
       }
 
@@ -147,8 +147,7 @@ public final class ClassDefinitionUtils {
       BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
       try {
          out.write(bytes);
-      }
-      finally {
+      } finally {
          out.close();
       }
    }
@@ -187,8 +186,7 @@ public final class ClassDefinitionUtils {
    public static <T> Class<T> getExistingClass(ClassLoader classLoader, String className) {
       try {
          return (Class<T>) Class.forName(className, true, classLoader);
-      }
-      catch (ClassNotFoundException e) {
+      } catch (ClassNotFoundException e) {
          return null;
       }
    }

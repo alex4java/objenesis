@@ -18,8 +18,9 @@ package org.objenesis;
 import org.objenesis.strategy.StdInstantiatorStrategy;
 
 /**
- * Objenesis implementation using the {@link org.objenesis.strategy.StdInstantiatorStrategy}.
- * 
+ * std：Standard
+ * 使用StdInstantiatorStrategy的标准实现方式
+ *
  * @author Henri Tremblay
  */
 public class ObjenesisStd extends ObjenesisBase {
@@ -34,7 +35,7 @@ public class ObjenesisStd extends ObjenesisBase {
    /**
     * Instance using the {@link org.objenesis.strategy.StdInstantiatorStrategy} with or without
     * caching {@link org.objenesis.instantiator.ObjectInstantiator}s
-    * 
+    *
     * @param useCache If {@link org.objenesis.instantiator.ObjectInstantiator}s should be cached
     */
    public ObjenesisStd(boolean useCache) {

@@ -1,12 +1,12 @@
 /**
  * Copyright 2006-2018 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,18 +40,20 @@ public class SunReflectionFactorySerializationInstantiator<T> implements ObjectI
    private final Constructor<T> mungedConstructor;
 
    public SunReflectionFactorySerializationInstantiator(Class<T> type) {
+      // 返回指定类的第一个非序列化的父类（包括自己）
       Class<? super T> nonSerializableAncestor = SerializationInstantiatorHelper
          .getNonSerializableSuperClass(type);
 
       Constructor<? super T> nonSerializableAncestorConstructor;
       try {
+         // 获得无参构造函数（该类必须有无参构造函数）
          nonSerializableAncestorConstructor = nonSerializableAncestor
             .getDeclaredConstructor((Class[]) null);
-      }
-      catch(NoSuchMethodException e) {
-         throw new ObjenesisException(new NotSerializableException(type+" has no suitable superclass constructor"));
+      } catch (NoSuchMethodException e) {
+         throw new ObjenesisException(new NotSerializableException(type + " has no suitable superclass constructor"));
       }
 
+      //获得munged构造函数对象，这个构造函数中会调用nonSerializableAncestorConstructor
       mungedConstructor = SunReflectionFactoryHelper.newConstructorForSerialization(
          type, nonSerializableAncestorConstructor);
       mungedConstructor.setAccessible(true);
@@ -60,8 +62,7 @@ public class SunReflectionFactorySerializationInstantiator<T> implements ObjectI
    public T newInstance() {
       try {
          return mungedConstructor.newInstance((Object[]) null);
-      }
-      catch(Exception e) {
+      } catch (Exception e) {
          throw new ObjenesisException(e);
       }
    }

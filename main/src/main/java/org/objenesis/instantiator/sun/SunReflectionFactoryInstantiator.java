@@ -34,10 +34,12 @@ import org.objenesis.instantiator.annotations.Typology;
 @Instantiator(Typology.STANDARD)
 public class SunReflectionFactoryInstantiator<T> implements ObjectInstantiator<T> {
 
+   // 被改写的构造函数
    private final Constructor<T> mungedConstructor;
 
    public SunReflectionFactoryInstantiator(Class<T> type) {
       Constructor<Object> javaLangObjectConstructor = getJavaLangObjectConstructor();
+      // 这个函数是关键，主要是为这个class创建了一个新的constractor
       mungedConstructor = SunReflectionFactoryHelper.newConstructorForSerialization(
          type, javaLangObjectConstructor);
       mungedConstructor.setAccessible(true);
