@@ -16,7 +16,7 @@
 package org.objenesis.strategy;
 
 /**
- * Base {@link InstantiatorStrategy} class basically. Only implements {@link InstantiatorStrategy}
+ * 实现了InstantiatorStrategy的抽象类，什么都不做。
  *
  * @author Henri Tremblay
  */

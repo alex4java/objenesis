@@ -16,15 +16,14 @@
 package org.objenesis;
 
 /**
- * Exception thrown by Objenesis. It wraps any instantiation exceptions. Note that this exception is
- * runtime to prevent having to catch it.
- * 
+ * Objenesis统一抛出的运行时异常
+ *
  * @author Henri Tremblay
  */
 public class ObjenesisException extends RuntimeException {
 
    private static final long serialVersionUID = -2677230016262426968L;
-   
+
    /**
     * @param msg Error message
     */

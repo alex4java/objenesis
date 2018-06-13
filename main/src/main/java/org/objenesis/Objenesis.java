@@ -18,29 +18,27 @@ package org.objenesis;
 import org.objenesis.instantiator.ObjectInstantiator;
 
 /**
- * Common interface to all kind of Objenesis objects
- * 
+ * Objenesis的通用接口
+ *
  * @author Henri Tremblay
  */
 public interface Objenesis {
 
    /**
-    * Will create a new object without any constructor being called
+    * 不调用任何构造函数创建对象
     *
-    * @param <T> Type instantiated
-    * @param clazz Class to instantiate
-    * @return New instance of clazz
+    * @param <T> 实例化类型
+    * @param clazz 要实例化的类
+    * @return 实例化后的对象
     */
    <T> T newInstance(Class<T> clazz);
 
    /**
-    * Will pick the best instantiator for the provided class. If you need to create a lot of
-    * instances from the same class, it is way more efficient to create them from the same
-    * ObjectInstantiator than calling {@link #newInstance(Class)}.
+    * 根据提供的类选择最佳的实例化器，如果你需要从同一个类创建很多实例，使用newInstance
     *
-    * @param <T> Type to instantiate
-    * @param clazz Class to instantiate
-    * @return Instantiator dedicated to the class
+    * @param <T> 实例化类型
+    * @param clazz 要实例化的类
+    * @return 类的专有实例化器
     */
    <T> ObjectInstantiator<T> getInstantiatorOf(Class<T> clazz);
 }

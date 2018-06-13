@@ -25,11 +25,11 @@ import org.objenesis.instantiator.ObjectInstantiator;
 public interface InstantiatorStrategy {
 
    /**
-    * Create a dedicated instantiator for the given class
+    * 为给定的类创建一个专用的实例化器
     *
-    * @param <T> Type to instantiate
-    * @param type Class that will be instantiated
-    * @return Dedicated instantiator
+    * @param <T> 实例化的类型
+    * @param type 将要被实例化的类
+    * @return 专用的实例化器
     */
    <T> ObjectInstantiator<T> newInstantiatorOf(Class<T> type);
 }

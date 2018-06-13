@@ -57,6 +57,7 @@ public class SerializingInstantiatorStrategy extends BaseInstantiatorStrategy {
       if(!Serializable.class.isAssignableFrom(type)) {
          throw new ObjenesisException(new NotSerializableException(type+" not serializable"));
       }
+      // HotSpot或者OpenJDK
       if(JVM_NAME.startsWith(HOTSPOT) || PlatformDescription.isThisJVM(OPENJDK)) {
          // Java 7 GAE was under a security manager so we use a degraded system
          if(isGoogleAppEngine() && PlatformDescription.SPECIFICATION_VERSION.equals("1.7")) {
@@ -64,6 +65,7 @@ public class SerializingInstantiatorStrategy extends BaseInstantiatorStrategy {
          }
          return new SunReflectionFactorySerializationInstantiator<T>(type);
       }
+      // 安卓平台
       else if(JVM_NAME.startsWith(DALVIK)) {
          if(PlatformDescription.isAndroidOpenJDK()) {
             return new ObjectStreamClassInstantiator<T>(type);

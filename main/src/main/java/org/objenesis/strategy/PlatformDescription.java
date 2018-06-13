@@ -20,7 +20,7 @@ import java.lang.reflect.Field;
 import org.objenesis.ObjenesisException;
 
 /**
- * List of constants describing the currently used platform.
+ * 描述当前使用平台的常量列表。
  *
  * @author Henri Tremblay
  */

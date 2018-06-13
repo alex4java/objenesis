@@ -21,8 +21,7 @@ import org.objenesis.strategy.InstantiatorStrategy;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Base class to extend if you want to have a class providing your own default strategy. Can also be
- * instantiated directly.
+ * 扩展基类，需要提供策略
  *
  * @author Henri Tremblay
  */
@@ -31,7 +30,7 @@ public class ObjenesisBase implements Objenesis {
    /** Strategy used by this Objenesi implementation to create classes */
    protected final InstantiatorStrategy strategy;
 
-   /** Strategy cache. Key = Class, Value = InstantiatorStrategy */
+   /** 策略缓存. Key = Class, Value = InstantiatorStrategy */
    protected ConcurrentHashMap<String, ObjectInstantiator<?>> cache;
 
    /**
@@ -44,10 +43,10 @@ public class ObjenesisBase implements Objenesis {
    }
 
    /**
-    * Flexible constructor allowing to pick the strategy and if caching should be used
+    * 使用传入的策略和是否使用缓存
     *
-    * @param strategy Strategy to use
-    * @param useCache If {@link ObjectInstantiator}s should be cached
+    * @param strategy 使用的策略
+    * @param useCache ObjectInstantiator是否允许被缓存
     */
    public ObjenesisBase(InstantiatorStrategy strategy, boolean useCache) {
       if(strategy == null) {
@@ -64,7 +63,7 @@ public class ObjenesisBase implements Objenesis {
    }
 
    /**
-    * Will create a new object without any constructor being called
+    * 不调用任何构造函数创建一个新对象
     *
     * @param clazz Class to instantiate
     * @return New instance of clazz

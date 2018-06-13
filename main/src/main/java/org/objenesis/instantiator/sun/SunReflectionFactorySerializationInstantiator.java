@@ -25,11 +25,9 @@ import org.objenesis.instantiator.annotations.Instantiator;
 import org.objenesis.instantiator.annotations.Typology;
 
 /**
- * Instantiates an object using internal sun.reflect.ReflectionFactory - a class only available on
- * JDK's that use Sun's 1.4 (or later) Java implementation. This instantiator will create classes in
- * a way compatible with serialization, calling the first non-serializable superclass' no-arg
- * constructor. This is the best way to instantiate an object without any side effects caused by the
- * constructor - however it is not available on every platform.
+ * 使用 sun.reflect.ReflectionFactory 来实例化一个对象（JDK版本 >= 1.4）
+ * 这个实例化器将以与序列化兼容的方式创建类 , 调用第一个不可序列化的超类'无参数构造函数.
+ * 这是最佳的方式来实例化对象，但它不是堆每个平台都有效。
  *
  * @author Leonardo Mesquita
  * @see ObjectInstantiator

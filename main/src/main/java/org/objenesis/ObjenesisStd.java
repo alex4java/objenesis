@@ -26,15 +26,14 @@ import org.objenesis.strategy.StdInstantiatorStrategy;
 public class ObjenesisStd extends ObjenesisBase {
 
    /**
-    * Default constructor using the {@link org.objenesis.strategy.StdInstantiatorStrategy}
+    * 固定使用StdInstantiatorStrategy策略
     */
    public ObjenesisStd() {
       super(new StdInstantiatorStrategy());
    }
 
    /**
-    * Instance using the {@link org.objenesis.strategy.StdInstantiatorStrategy} with or without
-    * caching {@link org.objenesis.instantiator.ObjectInstantiator}s
+    * 固定使用StdInstantiatorStrategy策略，需要用户提供是否使用缓存
     *
     * @param useCache If {@link org.objenesis.instantiator.ObjectInstantiator}s should be cached
     */

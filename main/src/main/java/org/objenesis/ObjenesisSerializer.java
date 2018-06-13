@@ -18,23 +18,22 @@ package org.objenesis;
 import org.objenesis.strategy.SerializingInstantiatorStrategy;
 
 /**
- * Objenesis implementation using the {@link SerializingInstantiatorStrategy}.
- * 
+ * 使用SerializingInstantiatorStrategy策略的Objenesis实现类
+ *
  * @author Henri Tremblay
  */
 public class ObjenesisSerializer extends ObjenesisBase {
 
    /**
-    * Default constructor using the {@link org.objenesis.strategy.SerializingInstantiatorStrategy}
+    * 固定使用SerializingInstantiatorStrategy策略
     */
    public ObjenesisSerializer() {
       super(new SerializingInstantiatorStrategy());
    }
 
    /**
-    * Instance using the {@link org.objenesis.strategy.SerializingInstantiatorStrategy} with or without caching
-    * {@link org.objenesis.instantiator.ObjectInstantiator}s
-    * 
+    * 固定使用SerializingInstantiatorStrategy策略，需要用户提供是否使用缓存
+    *
     * @param useCache If {@link org.objenesis.instantiator.ObjectInstantiator}s should be cached
     */
    public ObjenesisSerializer(boolean useCache) {

@@ -20,8 +20,8 @@ import java.io.Serializable;
 import org.objenesis.instantiator.ObjectInstantiator;
 
 /**
- * Use Objenesis in a static way. <strong>It is strongly not recommended to use this class.</strong>
- * 
+ * 使用Objenesis类的静态方式，不推荐使用此类
+ *
  * @author Henri Tremblay
  */
 public final class ObjenesisHelper {
@@ -72,7 +72,7 @@ public final class ObjenesisHelper {
    /**
     * Same as {@link #getInstantiatorOf(Class)} but providing an instantiator emulating
     * ObjectInputStream.readObject behavior.
-    * 
+    *
     * @see #newSerializableInstance(Class)
     * @param <T> Type to instantiate
     * @param clazz Class to instantiate
